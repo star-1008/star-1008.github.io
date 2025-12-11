@@ -114,7 +114,7 @@
         let colorDifference = 50; 
 
         // === 計時器相關變數 ===
-        let timeRemaining = 10;     // 初始時間 (秒)
+        let timeRemaining = 25;     // 初始時間 (秒)
         let timerInterval;          // 用來儲存計時器的 ID
 
         const gameGrid = document.getElementById('game-grid');
@@ -213,7 +213,7 @@ function handleSquareClick(isTarget) {
         level++;
         
         // === 關鍵修正：將時間重設為 10 秒 ===
-        timeRemaining = 10; 
+        timeRemaining = 25; 
         
         updateDifficulty(); 
         renderGrid(); // 重新渲染盤面會先清除舊的計時器，再啟動新的
@@ -266,7 +266,7 @@ function handleSquareClick(isTarget) {
             colorDifference = 50;
             
             // 每次開始都固定從 10 秒倒數
-            timeRemaining = 10; 
+            timeRemaining = 25; 
             
             scoreDisplay.textContent = `分數: 0`;
             levelDisplay.textContent = `關卡: 1`;
