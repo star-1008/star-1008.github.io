@@ -204,25 +204,29 @@
             }
         }
 
-        // --- 處理方塊點擊事件 (已移除加秒邏輯) ---
-        function handleSquareClick(isTarget) {
-            if (isTarget) {
-                // 點擊正確：不增加時間，直接進入下一關
-                
-                score++;
-                level++;
-                updateDifficulty(); 
-                renderGrid(); // 重新渲染盤面會重設計時器
-            } else {
-                // 點擊錯誤：遊戲結束
-                endGame();
-            }
-            
-            scoreDisplay.textContent = `分數: ${score}`;
-            levelDisplay.textContent = `關卡: ${level}`;
-            // 不再更新 timerDisplay，因為它會由 setInterval 負責更新
-        }
-
+       // --- 處理方塊點擊事件 ---
+function handleSquareClick(isTarget) {
+    if (isTarget) {
+        // 點擊正確：重置時間，進入下一關
+        
+        score++;
+        level++;
+        
+        // === 關鍵修正：將時間重設為 10 秒 ===
+        timeRemaining = 10; 
+        
+        updateDifficulty(); 
+        renderGrid(); // 重新渲染盤面會先清除舊的計時器，再啟動新的
+    } else {
+        // 點擊錯誤：遊戲結束
+        endGame();
+    }
+    
+    // 更新分數顯示和時間顯示
+    scoreDisplay.textContent = `分數: ${score}`;
+    levelDisplay.textContent = `關卡: ${level}`;
+    timerDisplay.textContent = `時間: ${timeRemaining}`; 
+}
         // --- 難度更新邏輯 ---
         function updateDifficulty() {
             // 1. 每 3 關增加一次網格大小
