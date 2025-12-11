@@ -211,17 +211,20 @@ function handleSquareClick(isTarget) {
 }
 
 // --- 難度更新邏輯 ---
+// --- 難度更新邏輯 ---
 function updateDifficulty() {
-    // ... 邏輯與之前相同 ...
+    // 1. 每 3 關增加一次網格大小
     if (level % 3 === 1 && gridSize < 8) { 
         gridSize++;
     }
 
+    // 2. 顏色差異逐漸減少 (難度增加)
     if (colorDifference > 5) {
         colorDifference -= 3; 
     }
     
-    // 提示：可以調整 timeIncrease 來控制難度
+    // 原本讓時間增量變少的邏輯已移除！
+}
     if (level > 10 && timeIncrease > 0.5) {
         timeIncrease -= 0.1; // 玩到高分後，每次給的時間會變少 (增加難度)
     }
@@ -259,6 +262,7 @@ function endGame() {
 }
 
 // --- 遊戲初始化/重新開始 (修改：重置時間) ---
+// --- 遊戲初始化/重新開始 (修改：移除 timeIncrease 重置) ---
 function startGame() {
     // 清除舊的計時器 (以防萬一)
     clearInterval(timerInterval); 
@@ -271,7 +275,7 @@ function startGame() {
     
     // 重置時間
     timeRemaining = 10; 
-    timeIncrease = 1;
+    // 原本的 timeIncrease = 1; 已經移除，因為它不再需要重置
     
     scoreDisplay.textContent = `分數: 0`;
     levelDisplay.textContent = `關卡: 1`;
