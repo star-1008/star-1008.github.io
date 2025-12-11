@@ -192,8 +192,7 @@ function renderGrid() {
 // --- 處理方塊點擊事件 ---
 function handleSquareClick(isTarget) {
     if (isTarget) {
-        // 點擊正確：增加時間，進入下一關
-        timeRemaining += timeIncrease; // 增加時間
+        // 點擊正確：不增加時間，直接進入下一關
         
         score++;
         level++;
@@ -207,46 +206,13 @@ function handleSquareClick(isTarget) {
     // 更新分數顯示和時間顯示
     scoreDisplay.textContent = `分數: ${score}`;
     levelDisplay.textContent = `關卡: ${level}`;
-    timerDisplay.textContent = `時間: ${timeRemaining}`;
+    timerDisplay.textContent = `時間: ${timeRemaining}`; 
+    // 注意：這裡顯示的時間是倒數計時器當前的時間
 }
-
-// --- 難度更新邏輯 ---
-// --- 難度更新邏輯 ---
-function updateDifficulty() {
-    // 1. 每 3 關增加一次網格大小
-    if (level % 3 === 1 && gridSize < 8) { 
-        gridSize++;
-    }
-
-    // 2. 顏色差異逐漸減少 (難度增加)
-    if (colorDifference > 5) {
-        colorDifference -= 3; 
-    }
-    
-    // 原本讓時間增量變少的邏輯已移除！
-}
-    if (level > 10 && timeIncrease > 0.5) {
-        timeIncrease -= 0.1; // 玩到高分後，每次給的時間會變少 (增加難度)
-    }
-}
-
-// --- 計時器啟動函式 (新增) ---
-function startTimer() {
-    timerDisplay.textContent = `時間: ${timeRemaining}`;
-    
-    // 每 1000 毫秒 (1 秒) 執行一次
-    timerInterval = setInterval(() => {
-        timeRemaining--;
-        timerDisplay.textContent = `時間: ${timeRemaining}`;
-
-        // 時間結束
-        if (timeRemaining <= 0) {
-            endGame();
-        }
-    }, 1000);
-}
-
-
+// === 計時器相關變數 (新增) ===
+let timeRemaining = 10;     // 初始時間 (秒)
+let timeIncrease = 1;       // <--- 請將這一行程式碼刪除！
+let timerInterval;          // 用來儲存計時器的 ID
 // --- 遊戲結束函式 (修改：新增清除計時器) ---
 function endGame() {
     // 1. 清除計時器
