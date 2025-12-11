@@ -1,0 +1,28 @@
+<html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>色差獵人挑戰</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <span id="score">分數: 0</span>
+            <span id="level">關卡: 1</span>
+        </div>
+        
+        <div id="game-grid" class="game-grid">
+            </div>
+
+        <div id="game-over" class="hidden">
+            <h2>遊戲結束！</h2>
+            <p>您的最終分數是: <span id="final-score">0</span></p>
+            <button onclick="startGame()">重新開始</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
